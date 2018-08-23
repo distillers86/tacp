@@ -1,0 +1,44 @@
+
+
+body {
+	background-color: powderblue;
+	transition: 0s;
+}
+
+
+
+/*
+
+div {
+	width: 1em;
+	background-color: white;
+	color: black;
+	transition: 1s;
+}
+
+div:hover {
+	width: 1em;
+	color: red;
+	font-size: 12em;
+	transition: 1s;
+	font-family: sans-serif;
+}
+
+
+@keyframes test {
+	from{background-color:;}
+	to{background-color: black;}
+	from{width:0;}
+	to{width:25em;}
+	from{height:0;}
+	to{height:25em;}
+}
+
+
+td {
+	animation-name: test;
+	animation-duration: 3s;
+	width: 0em;
+}
+
+*/
