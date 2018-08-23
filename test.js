@@ -198,13 +198,15 @@ function clearInputFields() {
 	
 	var userAreaCodeInput;
 	var userStateCodeInput;
+	var messageField;
 	
 	userAreaCodeInput = document.getElementById("areaCodeId");
 	userStateCodeInput = document.getElementById("stateCodeId");
+	messageField = document.getElementById("outputElementId");
 	
 	userAreaCodeInput.value = "";
 	userStateCodeInput.value = "";
-	
+	messageField.innerHTML = "";
 }
 
 /*
