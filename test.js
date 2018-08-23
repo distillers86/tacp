@@ -53,8 +53,32 @@ var areaCodeList = [907,	205,	251,	256,	334,	659,	938,	479,	501,	870,	480,	520,	
 var correspondingAreaCodeStateList = ["AK",	"AL",	"AL",	"AL",	"AL",	"AL",	"AL",	"AR",	"AR",	"AR",	"AZ",	"AZ",	"AZ",	"AZ",	"AZ",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CO",	"CO",	"CO",	"CO",	"CT",	"CT",	"CT",	"CT",	"DC",	"DE",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"GA",	"GA",	"GA",	"GA",	"GA",	"GA",	"GA",	"GA",	"GA",	"HI",	"IA",	"IA",	"IA",	"IA",	"IA",	"ID",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IN",	"IN",	"IN",	"IN",	"IN",	"IN",	"IN",	"IN",	"IN",	"KS",	"KS",	"KS",	"KS",	"KY",	"KY",	"KY",	"KY",	"KY",	"LA",	"LA",	"LA",	"LA",	"LA",	"MA",	"MA",	"MA",	"MA",	"MA",	"MA",	"MA",	"MA",	"MA",	"MD",	"MD",	"MD",	"MD",	"MD",	"MD",	"ME",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MN",	"MN",	"MN",	"MN",	"MN",	"MN",	"MN",	"MN",	"MO",	"MO",	"MO",	"MO",	"MO",	"MO",	"MO",	"MO",	"MS",	"MS",	"MS",	"MS",	"MT",	"NC",	"NC",	"NC",	"NC",	"NC",	"NC",	"NC",	"NC",	"NC",	"ND",	"NE",	"NE",	"NE",	"NH",	"NJ",	"NJ",	"NJ",	"NJ",	"NJ",	"NJ",	"NJ",	"NJ",	"NJ",	"NM",	"NM",	"NM",	"NV",	"NV",	"NV",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OK",	"OK",	"OK",	"OK",	"OR",	"OR",	"OR",	"OR",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PR",	"PR",	"RI",	"SC",	"SC",	"SC",	"SC",	"SD",	"TN",	"TN",	"TN",	"TN",	"TN",	"TN",	"TN",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"UT",	"UT",	"UT",	"VA",	"VA",	"VA",	"VA",	"VA",	"VA",	"VA",	"VT",	"WA",	"WA",	"WA",	"WA",	"WA",	"WA",	"WI",	"WI",	"WI",	"WI",	"WI",	"WI",	"WI",	"WV",	"WV",	"WY",
 ];
 
-
-
+/*
+	The purpose of this function is to verify
+	if the user entered data into the input fields
+	prior to hitting submit. 
+	
+*/
+function verifyInputWasMade(areaCode, stateCode) {
+	"use strict";
+	
+	var fullErrorMessage = "The following error(s) were made:";
+	var errorMissingAreaCode = "<br /><i> \t area code missing.</i>";
+	var errorMissingStateCode = " <br /><i>state code missing.</i>";
+	var errorAreaCodeNotNumber = " <br /><i>area code entered was not a numerical value.</i>";
+	var errorAreaCodeTooShort = " <br /><i>area code entered did not contain enough digits.</i>";
+	var errorAreaCodeTooShort = " <br /><i>area code entered contained too many digits.</i>";
+	
+	if(areaCode === "") {
+		fullErrorMessage += errorMissingAreaCode;
+	}
+	
+	if(stateCode === "") {
+		fullErrorMessage += errorMissingStateCode;
+	}
+	
+	return fullErrorMessage;
+}
 
 /*
 	The purpose of this function is to determine
@@ -96,7 +120,7 @@ function findMatchingStateName(stateCode) {
 
 
 	}
-
+	
 	return stateFullNames[index];
 
 
@@ -158,7 +182,7 @@ function determineBestLateOffset(valueOne, valueTwo) {
 function formatAMPM() {
   var hours = new Date().getHours();
   var minutes = new Date().getMinutes();
-  var ampm = hours >= 12 ? 'pm' : 'am';
+  var ampm = hours >= 12 ? 'PM' : 'AM';
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
   minutes = minutes < 10 ? '0'+minutes : minutes;
@@ -166,8 +190,22 @@ function formatAMPM() {
   return strTime;
 }
 
-
-
+/*
+	The purpose of this function is to clear the user input fields.
+*/
+function clearInputFields() {
+	"use strict";
+	
+	var userAreaCodeInput;
+	var userStateCodeInput;
+	
+	userAreaCodeInput = document.getElementById("areaCodeId");
+	userStateCodeInput = document.getElementById("stateCodeId");
+	
+	userAreaCodeInput.value = "";
+	userStateCodeInput.value = "";
+	
+}
 
 /*
 	The purpose of this function is to obtain the user entered
@@ -189,12 +227,16 @@ function testMainController() {
 	var timeZoneOffsetForStateCode;
 	var earlyCallTimeOffset;
 	var lateCallTimeOffset;
+	var formattedUserTime;
 
 	// get the desired HTML elements including user input fields
 	userEnteredAreaCode = document.getElementById("areaCodeId").value;
 	userEnteredStateCode = document.getElementById("stateCodeId").value;
 	outputElement = document.getElementById("outputElementId");
 
+	// verify the user made entry into fields prior to hitting submit
+	outputElement.innerHTML = verifyInputWasMade(userEnteredAreaCode, userEnteredStateCode);
+	
 	//convert the user entered area code into a number
 	userEnteredAreaCode = Number(userEnteredAreaCode);
 
@@ -214,18 +256,21 @@ function testMainController() {
 	earlyCallTimeOffset = determineBestEarlyOffset(timeZoneOffsetForAreaCode[0], timeZoneOffsetForStateCode[0]);
 	lateCallTimeOffset = determineBestLateOffset(timeZoneOffsetForAreaCode[1], timeZoneOffsetForStateCode[1]);
 
+	formattedUserTime = formatAMPM();
 
-/*  use this section to override current hours of time for testing...
+/* use this section to override current hours of time for testing...
+
 	currentTimeHours.setHours(7);
 	currentTimeHours = currentTimeHours.getHours();
+	
 */
 
 
 	if(currentTimeHours + earlyCallTimeOffset < callWindowHours[0] || 
 		currentTimeHours + lateCallTimeOffset >= callWindowHours[1]) {
-		outputElement.innerHTML = "cannot call.";
+		outputElement.innerHTML = "<img src='images/x-mark.png'/> As of " + formattedUserTime + " CST you cannot call.";
 	} else {
-		outputElement.innerHTML = "can call";
+		outputElement.innerHTML = "<img src='images/green-checkmark.png'/> As of " + formattedUserTime + " CST you can call.";
 	}
 
 console.log(earlyCallTimeOffset);
@@ -235,7 +280,7 @@ console.log(currentTimeHours);
 
 
 
-
+ 
 
 
 

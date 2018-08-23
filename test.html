@@ -11,35 +11,52 @@
 </head>
 <body id="testBody">
 
-
-<input name="test" 
-	   type="number"
-	   id="areaCodeId" 
-	   placeholder="area code" 
-	   maxlength="3"></input>
-<br />
-<input name="test2" 
-	   id="stateCodeId" 
-	   placeholder="state code"
-	   maxlength="3"></input>
-
-<button type="submit"
-		name="submit" 
-		value="submit" 
-		onclick="testMainController();">submit</button>
-
-<br /><br />
-
-<div id="outputElementId">test</div>
-
-<hr />
-
 <table>
 	<tr>
 		<td>
+<input name="test" 
+	   type="number"
+	   id="areaCodeId" 
+	   placeholder="area code" />
+		</td>
+		<td>
+	   
+<input name="test2" 
+	   id="stateCodeId" 
+	   placeholder="state code"
+	   maxlength="3" />
 		</td>
 	</tr>
+	<tr>
+		<td><label for="areaCodeId">Area Code<label>
+		</td>
+		<td><label for="stateCodeId">State Code<label>
+		</td>
+	</tr>
+	<tr>
+		<td>
+<button type="submit"
+		name="submit" 
+		value="submit"
+		id="submitButtonId"
+		onclick="testMainController();">submit</button>
+		</td>
+		<td>
+<button type="submit"
+		name="submit" 
+		value="submit"
+		id="clearButtonId"
+		onclick="clearInputFields();">clear</button>
+		</td>
+		</tr>
+		
+		
 </table>
+
+<div id="outputElementId"></div>
+
+
+
 
 </body>
 </html>

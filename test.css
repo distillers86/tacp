@@ -34,11 +34,34 @@ div:hover {
 	to{height:25em;}
 }
 
+*/
 
-td {
-	animation-name: test;
-	animation-duration: 3s;
-	width: 0em;
+img {
+	width: 2em;
 }
 
-*/
+input {
+	font-size: 32px;
+	text-align: center;
+	width: 5em;
+	height: 3em;
+}
+
+label {
+	font-size:28px;
+	
+}
+
+td {
+	text-align: center;
+}
+
+
+button {
+	font-size: 28px;
+	width: 100%;
+}
+
+
+
+
