@@ -53,32 +53,6 @@ var areaCodeList = [907,	205,	251,	256,	334,	659,	938,	479,	501,	870,	480,	520,	
 var correspondingAreaCodeStateList = ["AK",	"AL",	"AL",	"AL",	"AL",	"AL",	"AL",	"AR",	"AR",	"AR",	"AZ",	"AZ",	"AZ",	"AZ",	"AZ",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CA",	"CO",	"CO",	"CO",	"CO",	"CT",	"CT",	"CT",	"CT",	"DC",	"DE",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"FL",	"GA",	"GA",	"GA",	"GA",	"GA",	"GA",	"GA",	"GA",	"GA",	"HI",	"IA",	"IA",	"IA",	"IA",	"IA",	"ID",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IL",	"IN",	"IN",	"IN",	"IN",	"IN",	"IN",	"IN",	"IN",	"IN",	"KS",	"KS",	"KS",	"KS",	"KY",	"KY",	"KY",	"KY",	"KY",	"LA",	"LA",	"LA",	"LA",	"LA",	"MA",	"MA",	"MA",	"MA",	"MA",	"MA",	"MA",	"MA",	"MA",	"MD",	"MD",	"MD",	"MD",	"MD",	"MD",	"ME",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MI",	"MN",	"MN",	"MN",	"MN",	"MN",	"MN",	"MN",	"MN",	"MO",	"MO",	"MO",	"MO",	"MO",	"MO",	"MO",	"MO",	"MS",	"MS",	"MS",	"MS",	"MT",	"NC",	"NC",	"NC",	"NC",	"NC",	"NC",	"NC",	"NC",	"NC",	"ND",	"NE",	"NE",	"NE",	"NH",	"NJ",	"NJ",	"NJ",	"NJ",	"NJ",	"NJ",	"NJ",	"NJ",	"NJ",	"NM",	"NM",	"NM",	"NV",	"NV",	"NV",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"NY",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OH",	"OK",	"OK",	"OK",	"OK",	"OR",	"OR",	"OR",	"OR",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PA",	"PR",	"PR",	"RI",	"SC",	"SC",	"SC",	"SC",	"SD",	"TN",	"TN",	"TN",	"TN",	"TN",	"TN",	"TN",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"TX",	"UT",	"UT",	"UT",	"VA",	"VA",	"VA",	"VA",	"VA",	"VA",	"VA",	"VT",	"WA",	"WA",	"WA",	"WA",	"WA",	"WA",	"WI",	"WI",	"WI",	"WI",	"WI",	"WI",	"WI",	"WV",	"WV",	"WY",
 ];
 
-/*
-	The purpose of this function is to verify
-	if the user entered data into the input fields
-	prior to hitting submit. 
-	
-*/
-function verifyInputWasMade(areaCode, stateCode) {
-	"use strict";
-	
-	var fullErrorMessage = "The following error(s) were made:";
-	var errorMissingAreaCode = "<br /><i> \t area code missing.</i>";
-	var errorMissingStateCode = " <br /><i>state code missing.</i>";
-	var errorAreaCodeNotNumber = " <br /><i>area code entered was not a numerical value.</i>";
-	var errorAreaCodeTooShort = " <br /><i>area code entered did not contain enough digits.</i>";
-	var errorAreaCodeTooShort = " <br /><i>area code entered contained too many digits.</i>";
-	
-	if(areaCode === "") {
-		fullErrorMessage += errorMissingAreaCode;
-	}
-	
-	if(stateCode === "") {
-		fullErrorMessage += errorMissingStateCode;
-	}
-	
-	return fullErrorMessage;
-}
 
 /*
 	The purpose of this function is to determine
@@ -209,6 +183,46 @@ function clearInputFields() {
 	messageField.innerHTML = "";
 }
 
+
+/*
+	The purpose of this function is to verify
+	if the user entered data into the input fields
+	prior to hitting submit. 
+	
+*/
+function verifyInputCriteriaWasMet(areaCode, stateCode) {
+	"use strict";
+	
+
+	var fullErrorMessage = "The following error(s) were detected:";
+	var missingAreaCode = "<br /><i>&#8226 area code missing</i>";
+	var missingStateCode = " <br /><i>&#8226 state code missing</i>";
+	var areaCodeTooShort = " <br /><i>&#8226 area code entered did not contain enough digits</i>";
+	var areaCodeTooLong = " <br /><i>&#8226 area code entered contained too many digits</i>";
+	var areaCodeNotFound = "<br /><i>&#8226 area code not found</i>";
+	var stateCodeNotFound = "<br /><i>&#8226 state code not found</i>";
+
+
+	if(areaCode === "") {
+		fullErrorMessage += missingAreaCode;
+	} else if(areaCode.length < 3) {
+		fullErrorMessage += areaCodeTooShort;
+	} else if(areaCode.length > 3) {
+		fullErrorMessage += areaCodeTooLong;
+	} 
+
+	if(stateCode === "") {
+		fullErrorMessage += missingStateCode;
+	} 
+
+
+
+
+	
+	return fullErrorMessage;
+}
+
+
 /*
 	The purpose of this function is to obtain the user entered
 	data from the html page and call subsequent functions to 
@@ -237,8 +251,8 @@ function testMainController() {
 	outputElement = document.getElementById("outputElementId");
 
 	// verify the user made entry into fields prior to hitting submit
-	outputElement.innerHTML = verifyInputWasMade(userEnteredAreaCode, userEnteredStateCode);
-	
+	outputElement.innerHTML = verifyInputCriteriaWasMet(userEnteredAreaCode, userEnteredStateCode);
+
 	//convert the user entered area code into a number
 	userEnteredAreaCode = Number(userEnteredAreaCode);
 
@@ -260,12 +274,14 @@ function testMainController() {
 
 	formattedUserTime = formatAMPM();
 
+
 /* use this section to override current hours of time for testing...
 
 	currentTimeHours.setHours(7);
 	currentTimeHours = currentTimeHours.getHours();
 	
 */
+
 
 
 	if(currentTimeHours + earlyCallTimeOffset < callWindowHours[0] || 
@@ -278,6 +294,8 @@ function testMainController() {
 console.log(earlyCallTimeOffset);
 console.log(lateCallTimeOffset);
 console.log(currentTimeHours);
+
+
 
 
 
