@@ -201,7 +201,7 @@ function verifyInputCriteriaWasMet(areaCode, stateCode) {
 	var areaCodeTooLong = " <br /><i>&#8226 area code entered contained too many digits</i>";
 	var areaCodeNotFound = "<br /><i>&#8226 area code not found</i>";
 	var stateCodeNotFound = "<br /><i>&#8226 state code not found</i>";
-
+	
 
 	if(areaCode === "") {
 		fullErrorMessage += missingAreaCode;
