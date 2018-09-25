@@ -1,67 +1,26 @@
 <!DOCTYPE html>
-<html>
-<head><title></title>
 
-<script src="test.js"></script>
-
-<link  rel="stylesheet"
-	   href="test.css" 
-	   type="text/css" >
-
+<html lang="en">
+<head>
+<title></title>
+	<script src="test.js"></script>
+	<link  rel="stylesheet" href="normalize.css" type="text/css" >
+	<link  rel="stylesheet" href="test.css" type="text/css" >
 </head>
 <body id="testBody">
-
-<table>
-	<tr>
-		<td>
-<input name="test" 
-	   type="number"
-	   id="areaCodeId" 
-	   placeholder="area code" />
-		</td>
-		<td>
-	   
-<input name="test2" 
-	   id="stateCodeId" 
-	   placeholder="state code"
-	   maxlength="3" />
-		</td>
-	</tr>
-	<tr>
-		<td><label for="areaCodeId">Area Code</label>
-		</td>
-		<td><label for="stateCodeId">State Code</label>
-		</td>
-	</tr>
-	<tr>
-		<td>
-<button type="submit"
-		name="submit" 
-		value="submit"
-		id="submitButtonId"
-		onclick="testMainController();setTimeout(clearInputFields, 90000)">submit</button>
-		
-		</td>
-		<td>
-<button type="submit"
-		name="submit" 
-		value="submit"
-		id="clearButtonId"
-		onclick="clearInputFields();">clear</button>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2"><div id="outputElementId"></div>
-		</td>
-	</tr>
-		
-		
-</table>
-
-
-
-
-
-
+	<article>
+		<div id="divWrapper">
+		<input name="test" type="number" id="areaCodeId" placeholder="area code" />
+		<input name="test2" id="stateCodeId" placeholder="state code" maxlength="3" />
+		<br />
+		<label for="areaCodeId">Area Code</label>
+		<label for="stateCodeId">State Code</label>
+		<br />
+		<button type="submit" name="submit" value="submit" id="submitButtonId" 
+			onclick="testMainController();setTimeout(clearInputFields, 90000)">submit</button>
+		<button type="submit" name="submit" value="submit" id="clearButtonId" onclick="clearInputFields();">clear</button>
+		</div>
+		<div id="outputElementId"></div>
+	</article>	
 </body>
 </html>

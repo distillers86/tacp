@@ -157,10 +157,12 @@ function formatAMPM() {
   var hours = new Date().getHours();
   var minutes = new Date().getMinutes();
   var ampm = hours >= 12 ? 'PM' : 'AM';
+  var seconds = new Date().getSeconds();
   hours = hours % 12;
   hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0'+minutes : minutes;
-  var strTime = hours + ':' + minutes + ' ' + ampm;
+  minutes = minutes < 10 ? '0'+ minutes : minutes;
+  seconds = seconds < 10 ? '0'+ seconds : seconds;
+  var strTime = hours + ':' + minutes + ":" + seconds + ' ' + ampm;
   return strTime;
 }
 
@@ -181,6 +183,8 @@ function clearInputFields() {
 	userAreaCodeInput.value = "";
 	userStateCodeInput.value = "";
 	messageField.innerHTML = "";
+	
+	
 }
 
 
@@ -190,6 +194,7 @@ function clearInputFields() {
 	prior to hitting submit. 
 	
 */
+
 function verifyInputCriteriaWasMet(areaCode, stateCode) {
 	"use strict";
 	
@@ -201,7 +206,7 @@ function verifyInputCriteriaWasMet(areaCode, stateCode) {
 	var areaCodeTooLong = " <br /><i>&#8226 area code entered contained too many digits</i>";
 	var areaCodeNotFound = "<br /><i>&#8226 area code not found</i>";
 	var stateCodeNotFound = "<br /><i>&#8226 state code not found</i>";
-	
+	var stateCodeTooShort = " <br /><i>&#8226 state code entered did not contain enough characters</i>";
 
 	if(areaCode === "") {
 		fullErrorMessage += missingAreaCode;
@@ -213,7 +218,9 @@ function verifyInputCriteriaWasMet(areaCode, stateCode) {
 
 	if(stateCode === "") {
 		fullErrorMessage += missingStateCode;
-	} 
+	} else if (stateCode < 2) {
+		fullErrorMessage += stateCodeTooShort;
+	}
 
 
 
@@ -221,6 +228,7 @@ function verifyInputCriteriaWasMet(areaCode, stateCode) {
 	
 	return fullErrorMessage;
 }
+
 
 
 /*
@@ -239,6 +247,7 @@ function testMainController() {
 	var outputElement;
 	var currentTimeHours = new Date().getHours();
 	var currentTimeMinutes = new Date().getMinutes();
+	
 	var timeZoneOffsetForAreaCode;
 	var timeZoneOffsetForStateCode;
 	var earlyCallTimeOffset;
@@ -247,11 +256,11 @@ function testMainController() {
 
 	// get the desired HTML elements including user input fields
 	userEnteredAreaCode = document.getElementById("areaCodeId").value;
-	userEnteredStateCode = document.getElementById("stateCodeId").value;
+	userEnteredStateCode = document.getElementById("stateCodeId").value.toUpperCase();
 	outputElement = document.getElementById("outputElementId");
 
 	// verify the user made entry into fields prior to hitting submit
-	outputElement.innerHTML = verifyInputCriteriaWasMet(userEnteredAreaCode, userEnteredStateCode);
+	//outputElement.innerHTML = verifyInputCriteriaWasMet(userEnteredAreaCode, userEnteredStateCode);
 
 	//convert the user entered area code into a number
 	userEnteredAreaCode = Number(userEnteredAreaCode);
@@ -274,14 +283,10 @@ function testMainController() {
 
 	formattedUserTime = formatAMPM();
 
-
 /* use this section to override current hours of time for testing...
-
 	currentTimeHours.setHours(7);
 	currentTimeHours = currentTimeHours.getHours();
-	
 */
-
 
 
 	if(currentTimeHours + earlyCallTimeOffset < callWindowHours[0] || 
@@ -291,31 +296,15 @@ function testMainController() {
 		outputElement.innerHTML = "<img src='images/green-checkmark.png'/> As of " + formattedUserTime + " CST you can call.";
 	}
 
+
+	// 3 following lines for testing purposes
 console.log(earlyCallTimeOffset);
 console.log(lateCallTimeOffset);
 console.log(currentTimeHours);
 
-
-
-
-
-
- 
-
-
-
-
-
-
-
-/* 
-junk testing
-	console.log(19 % 12);
-
-	console.log(19 < 20 ? 12 : 11);
-end junk testing
-*/
-
-
-
 }
+
+
+
+
+

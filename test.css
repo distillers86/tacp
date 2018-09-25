@@ -1,43 +1,15 @@
 
+* {
+	font-family: "Times New Roman", Times, serif;
+}
 
 body {
 	background-color: powderblue;
-	transition: 0s;
+	padding: .5em
 }
-
-
-
-/*
-
-div {
-	width: 1em;
-	background-color: white;
-	color: black;
-	transition: 1s;
-}
-
-div:hover {
-	width: 1em;
-	color: red;
-	font-size: 12em;
-	transition: 1s;
-	font-family: sans-serif;
-}
-
-
-@keyframes test {
-	from{background-color:;}
-	to{background-color: black;}
-	from{width:0;}
-	to{width:25em;}
-	from{height:0;}
-	to{height:25em;}
-}
-
-*/
 
 img {
-	width: 2em;
+	width: 1em;
 }
 
 input {
@@ -45,24 +17,44 @@ input {
 	text-align: center;
 	width: 5em;
 	height: 3em;
+	margin-left: .2em;
+	margin-right: .2em;
+	
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 
 label {
 	font-size:28px;
+	margin-left: 1em;
+	margin-right: 1em;
 	
 }
 
-td {
-	text-align: center;
-	padding: .5em .5em .5em .5em;
-}
-
-
 button {
 	font-size: 28px;
-	width: 100%;
+	width: 5em;
+	border-radius: .2em;
+	margin-left: .65em;
+	margin-right: .65em;
+
 }
 
+div#divWrapper {
+	padding: 2em 0em 2em 0em;
+	margin-bottom: 2em;
+	text-align: center;
+	width: 27em;
+	background-color: #F6DDCC; 
+	border-radius: .3em;
+	box-shadow: .5em .5em .5em #909497;
+	overflow: hidden;
+	
+}
 
 
 
